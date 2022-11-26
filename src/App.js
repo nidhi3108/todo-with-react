@@ -1,8 +1,12 @@
 //react ko y btane k liy ki change hue h to uske liy hook ka use krte h y ui k change ko batae hai
 import React ,{useState} from 'react';
-
 import Input from "./component/input";
 let ip=" ";
+let ipValue;
+
+let del;
+
+
 export default function App()
 {
    
@@ -10,12 +14,16 @@ export default function App()
   const [todos, setTodos] = useState([]);
   //input box khali krnw k liy
   const [ip, setIP] = useState('')
+  //for delete todo
+  const [del, setDel] = useState([]);
   
   function onInputChange(event)
   {
       const value=event.target.value;
           setIP(value);
-          // ip=value;
+          ipValue=value;     
+
+         
 
           // ipValue=value;
           // console.log(ipValue);
@@ -40,16 +48,37 @@ export default function App()
           // setTodos(newTodos)  //ye yah btaata ki kuch change hua h aur set state jo change hua h vo todo vali initial array ko data bhej degi vha store  ho jyega nya data
 
             //----]]]  we can use spread opertaor in place if it
-            setTodos([...todos,ip]);
-          setIP("");
+            setTodos([...todos,ipValue]);
+          setIP(" ");
+
+          
   }  
+
+  function deleteTodo(){
+
+    let delTodos=todos.map(function(todo){
+        return todo;
+      })
+
+      delTodos.pop(ipValue)  
+      setTodos(delTodos) 
+    // var index=todos.indexOf(ipValue);     
+    //       console.log(index);
+    // console.log(ipValue);
+    //    setDel([...del.splice(index, 1)]);
+    //    console.log(setDel);
+      //  setIP(" ");
+  }
+
+
+
   return(
  <>
  {/* <input value={ip} onChange={onInputChange} placeholder='type something'/> */}
  {/* <Input abc="type" onChange={onInputChange} value={ip}/> */}
  <Input abc="write" onChange={onInputChange} value={ip}/>
  <button onClick={saveTodo}>save</button>
- <button >Delete</button>
+ <button onClick={deleteTodo}>Delete</button>
  <ul>
   { 
        //agr change ki hui value store krni h to nya array bnao nhi to aise hi logic lkh do
@@ -57,7 +86,12 @@ export default function App()
         todos.map(function(todo,index){
           return <li key={index}>{todo}</li>
         })
-      }
+    }
+    {
+      del.map(function(todo,index){
+        return <li key={index}>{todo}</li>
+      })
+    }
  </ul>
  </>
   )
