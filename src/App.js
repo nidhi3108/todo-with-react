@@ -14,7 +14,6 @@ export default function App()
   function onInputChange(event)
   {
       const value=event.target.value;
-
           setIP(value);
           // ip=value;
 
