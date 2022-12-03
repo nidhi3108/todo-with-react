@@ -25,8 +25,7 @@ useEffect( () => {
     return response.json();
    })
    .then(function(data){
-    // console.log(data);
-    setTodos(data)
+    console.log(data);
    });
   //  .catch((err)=>{
   //   console.log(err);
@@ -108,7 +107,7 @@ function saveTodoServer(){
    { 
        //agr change ki hui value store krni h to nya array bnao nhi to aise hi logic lkh do
        //mgr react m {} iske andar bina new array map lga k new array vala kam ho jata h
-        todos.forEach(function(todo,index){
+        todos.map(function(todo,index){
           return <li key={index}>{todo}</li>
         })
     }
