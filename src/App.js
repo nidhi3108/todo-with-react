@@ -25,7 +25,8 @@ useEffect( () => {
     return response.json();
    })
    .then(function(data){
-    console.log(data);
+    // console.log(data);
+    setTodos(data)
    });
   //  .catch((err)=>{
   //   console.log(err);
@@ -44,6 +45,7 @@ function onInputChange(event)
           // var data=App(); //jo call krta h usi ko data milta h to usko phle store krana pdega tb access krenge
           // console.log(data);
   }
+  console.log(ipValue);
 
  async function saveTodo(){
 
@@ -70,7 +72,7 @@ function onInputChange(event)
           setIP(" ");
 
 }  
-
+console.log(todos);
 function saveTodoServer(){
      return fetch("http://localhost:8000/save",{
       method:"POST",
@@ -98,11 +100,13 @@ function saveTodoServer(){
 
   return(
  <>
+ 
  {/* <input value={ip} onChange={onInputChange} placeholder='type something'/> */}
  {/* <Input abc="type" onChange={onInputChange} value={ip}/> */}
  <Input abc="write" onChange={onInputChange} value={ip}/>
  <button onClick={saveTodo}>save</button>
  <button onClick={deleteTodo}>Delete</button>
+ 
  <ul>
    { 
        //agr change ki hui value store krni h to nya array bnao nhi to aise hi logic lkh do
